@@ -1,5 +1,11 @@
 #!/bin/sh
 
+die() {
+  exit 1
+}
+
+trap die TERM
+
 if [ -z "$domains" ]; then
   echo "require domains env"
   exit 1
@@ -13,7 +19,11 @@ while :; do
     if [ $E_LEN -ne 4 ]; then
       echo "'$ELEMENT' is invalied"
     else
-      ./update-onamae-ddns.sh $(echo $ELEMENT | tr ':' ' ')
+      eval ./update-onamae-ddns.sh \
+        "$(echo $ELEMENT | cut -d ':' -f 1)" \
+        "$(echo $ELEMENT | cut -d ':' -f 2)" \
+        "$(echo $ELEMENT | cut -d ':' -f 3)" \
+        "$(echo $ELEMENT | cut -d ':' -f 4)"
     fi
   done
 
