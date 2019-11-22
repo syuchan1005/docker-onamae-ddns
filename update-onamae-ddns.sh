@@ -22,7 +22,7 @@ modFile="/tmp/DDNS_modip.txt"
 modResult="/tmp/DDNS_mod_result.txt"
 modTmp1="/tmp/DDNS_mod_tmp1.txt"
 
-echo "GET / HTTP/1.1\n\n" | nc $onamaeServer $ipCheckServerPort | sed -e "s/IPV4\: //" | sed -z "s/\n//g" >$ipv4New
+echo "GET / HTTP/1.1\n\n" | nc $onamaeServer $ipCheckServerPort | sed -e "s/IPV4\: //" >$ipv4New
 if [ ! -f ${ipv4Now} ]; then
   cp $ipv4New $ipv4Now
 fi

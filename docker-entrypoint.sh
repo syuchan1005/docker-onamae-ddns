@@ -22,7 +22,7 @@ while :; do
       eval /onamae/update-onamae-ddns.sh \
         "$(echo $ELEMENT | cut -d ':' -f 1)" \
         "$(echo $ELEMENT | cut -d ':' -f 2)" \
-        "$(echo $ELEMENT | cut -d ':' -f 3)" \
+        "'$(echo $ELEMENT | cut -d ':' -f 3)'" \
         "$(echo $ELEMENT | cut -d ':' -f 4)"
     fi
   done
