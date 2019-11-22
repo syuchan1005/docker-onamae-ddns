@@ -5,12 +5,14 @@ if [ -z "$domains" ]; then
   exit 1
 fi
 
-$beforeIPPath="/tmp/beforeIP.txt"
+beforeIPPath="/tmp/beforeIP.txt"
 
 while :; do
-  $nowIP=$(echo "GET / HTTP/1.1\n\n" | nc $onamaeServer $ipCheckServerPort | sed -e "s/IPV4\: //")
+  nowIP=$(echo "GET / HTTP/1.1\n\n" | nc $onamaeServer $ipCheckServerPort | sed -e "s/IPV4\: //")
+  touch $beforeIPPath
+  beforeIP=$(cat $beforeIPPath)
 
-  if [ nowIP != $(cat $beforeIPPath) ]; then
+  if [ "$nowIP" != "$beforeIP" ]; then
     LENGTH=$(echo $domains | tr ',' '\n' | wc -l)
     for i in $(seq $LENGTH); do
       ELEMENT=$(echo $domains | cut -d ',' -f $i)
