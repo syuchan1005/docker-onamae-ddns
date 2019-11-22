@@ -1,11 +1,5 @@
 #!/bin/sh
 
-die() {
-  exit 1
-}
-
-trap die TERM
-
 if [ -z "$domains" ]; then
   echo "require domains env"
   exit 1
