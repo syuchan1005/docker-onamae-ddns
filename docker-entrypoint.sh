@@ -8,7 +8,7 @@ fi
 while :; do
   LENGTH=$(echo $domains | tr ',' '\n' | wc -l)
   for i in $(seq $LENGTH); do
-    ELEMENT=$(echo $ARRAY | cut -d ',' -f $i)
+    ELEMENT=$(echo $domains | cut -d ',' -f $i)
     E_LEN=$(echo $ELEMENT | tr ':' '\n' | wc -l)
     if [ $E_LEN -ne 4 ]; then
       echo "'$ELEMENT' is invalied"
