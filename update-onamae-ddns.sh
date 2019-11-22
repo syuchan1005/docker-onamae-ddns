@@ -41,7 +41,7 @@ if [ -s $modTmp1 ]; then
   logger -s -t $0 "(${fullDomain}) IP address update failed. See ${modResult} $(cat $modResult)"
 else
   rm $modResult
-  echo "(${fullDomain}) IP address updated successfully. ->($(cat $newIP))"
+  echo "(${fullDomain}) IP address updated successfully. ->($newIP)"
 fi
 
 rm $modTmp1
